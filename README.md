@@ -13,8 +13,11 @@ MouseSuite Docker currently includes the following tools and their dependencies:
 * [rodbfc](https://github.com/MouseSuite/rodbfc)
 * [rodreg](https://github.com/MouseSuite/rodreg)
 * [mousebse](https://github.com/MouseSuite/MouseBSE)
+* [mbe](https://github.com/MouseSuite/MouseBrainExtractor)
 * [rstr](https://github.com/MouseSuite/rstr)
 * [maskbackgroundnoise](https://github.com/MouseSuite/maskbackgroundnoise)
+
+docker run -it --rm -v ${PWD}/data:/data -v${PWD}/data:/data --runtime=nvidia --gpus all mousesuite mbe -i /data/sub-25-F2-LC_T2w.nii.gz -o /data/out.nii.gz --device cuda
 
 ## Requirements
 Install the Docker engine as described here: https://docs.docker.com/engine/install/
@@ -44,7 +47,7 @@ docker run -it --rm mousesuite
 This will show you the available programs:
 ```
 usage:
-mousesuite [rodbfc|rodreg|mousebse|maskbackgroundnoise|rstr]
+mousesuite {rodbfc|rodreg|mousebse|maskbackgroundnoise|rstr}
 ```
 
 To run one of them, add it to the command line call, e.g., this will run `rodreg` and show you the help for it:
@@ -62,6 +65,11 @@ For example, to run rodreg on an image in a folder named `/data` in the current 
 docker run -it --rm -v${PWD}/data:/data --runtime=nvidia --gpus all mousesuite rodreg /data/moving_file.nii.gz /data/fixed_file.nii.gz /data/output_file.nii.gz
 ```
 This will register moving_file.nii.gz to fixed_file.nii.gz and store the result in output_file.nii.gz.
+
+To run the Mouse brain extractor (mbe) on the GPU:
+```
+docker run -it --rm -v ${PWD}/data:/data -v${PWD}/data:/data --runtime=nvidia --gpus all mousesuite mbe -i /data/mri.nii.gz -o /data/out.nii.gz --device cuda
+```
 
 # Acknowledgments
 This project is supported by NIH Grant R01-NS121761 (PIs: David Shattuck and Allan MacKenzie-Graham).
