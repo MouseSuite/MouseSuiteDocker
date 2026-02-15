@@ -4,8 +4,6 @@
 
 MouseSuite Docker is a GPU-enabled container that contains several of the MouseSuite programs and their dependencies. It facilitates rapid deployment of the MouseSuite tools.
 
-## Building
-
 ## Authors
 MouseSuite Docker is maintained by David Shattuck at UCLA. The software inside the container is developed primarily by the MouseSuite team. Please see the individual program sites for further details.
 
@@ -21,7 +19,6 @@ MouseSuite Docker currently includes the following tools and their dependencies:
 ## Requirements
 Install the Docker engine as described here: https://docs.docker.com/engine/install/
 
-
 ## Building
 Retrieve this repo using:
 ```
@@ -35,7 +32,8 @@ make
 ```
 This will download all of the software packages and dependences. Please note that building the Dockerfile from scratch can take several minutes.
 
-
+## License
+This project is licensed under the GPL (V2) License - see the [LICENSE.txt](LICENSE.txt) file for details.
 
 ## Usage
 You can invoke MouseSuite Docker the command line as follows:
@@ -64,3 +62,6 @@ For example, to run rodreg on an image in a folder named `/data` in the current 
 docker run -it --rm -v${PWD}/data:/data --runtime=nvidia --gpus all mousesuite rodreg /data/moving_file.nii.gz /data/fixed_file.nii.gz /data/output_file.nii.gz
 ```
 This will register moving_file.nii.gz to fixed_file.nii.gz and store the result in output_file.nii.gz.
+
+# Acknowledgments
+This project is supported by NIH Grant R01-NS121761 (PIs: David Shattuck and Allan MacKenzie-Graham).
