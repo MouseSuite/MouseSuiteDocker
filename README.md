@@ -17,8 +17,6 @@ MouseSuite Docker currently includes the following tools and their dependencies:
 * [rstr](https://github.com/MouseSuite/rstr)
 * [maskbackgroundnoise](https://github.com/MouseSuite/maskbackgroundnoise)
 
-docker run -it --rm -v ${PWD}/data:/data -v${PWD}/data:/data --runtime=nvidia --gpus all mousesuite mbe -i /data/sub-25-F2-LC_T2w.nii.gz -o /data/out.nii.gz --device cuda
-
 ## Requirements
 Install the Docker engine as described here: https://docs.docker.com/engine/install/
 
@@ -60,16 +58,20 @@ You will need to bind some local directory to be able to process data with the D
 ```
 docker run -it --rm -v${path}:/data --runtime=nvidia --gpus all mousesuite [rodbfc|rodreg] [args]
 ```
-For example, to run rodreg on an image in a folder named `/data` in the current directory:
+
+### rodreg example 
+To run rodreg on an image in a folder named `/data` in the current directory:
 ```
 docker run -it --rm -v${PWD}/data:/data --runtime=nvidia --gpus all mousesuite rodreg /data/moving_file.nii.gz /data/fixed_file.nii.gz /data/output_file.nii.gz
 ```
 This will register moving_file.nii.gz to fixed_file.nii.gz and store the result in output_file.nii.gz.
 
-To run the Mouse brain extractor (mbe) on the GPU:
+### mouse brain extractor example 
+To run the mouse brain extractor (mbe) on the GPU:
 ```
 docker run -it --rm -v ${PWD}/data:/data -v${PWD}/data:/data --runtime=nvidia --gpus all mousesuite mbe -i /data/mri.nii.gz -o /data/out.nii.gz --device cuda
 ```
+This will remove skull and scalp from the `mri.nii.gz` file in `./data` and produce a set of output files starting with `out`.
 
 # Acknowledgments
 This project is supported by NIH Grant R01-NS121761 (PIs: David Shattuck and Allan MacKenzie-Graham).
