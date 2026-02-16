@@ -54,6 +54,8 @@ RUN cd / && wget http://users.bmap.ucla.edu/~yeunkim/rodentpipeline/pretrained_w
 
 RUN touch /opt/MouseBrainExtractor/models/__init__.py
 
+RUN cd /opt/ && git clone https://github.com/MouseSuite/MMA.git
+
 ENV PTWTS="/mod5/"
 
 COPY bin /opt/bin
